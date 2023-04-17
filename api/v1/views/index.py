@@ -15,6 +15,6 @@ def api_status():
     return jsonify({"status": "OK"})
 
 
-@app_views.route('/stats', strict_slashes=False)
+@app_views.route('/stats',methods=['GET'], strict_slashes=False)
 def count():
     return jsonify(amenities=storage.count(amenity.Amenity), cities=storage.count(city.City), places=storage.count(place.Place), reviews=storage.count(review.Review), states=storage.count(state.State), users=storage.count(user.User))
