@@ -6,7 +6,7 @@ app_views that returns a JSON: "status" ok
 """
 from api.v1.views import app_views
 from flask import Flask, jsonify
-import models.engine
+from models import storage
 from models import amenity, city, place, review, state, user
 
 
@@ -18,10 +18,10 @@ def api_status():
 @app_views.route('/api/v1/stats', strict_slashes=False)
 def count():
     a = {}
-    a["amenities"] = count(amenity.Amenity)
-    a["cities"] = count(city.City)
-    a["places"] = count(place.Place)
-    a["reviews"] = count(review.Review)
-    a["states"] = count(state.State)
-    a["users"] = count(user.User)
+    a["amenities"] = storage.count(amenity.Amenity)
+    a["cities"] = storage.count(city.City)
+    a["places"] = storage.count(place.Place)
+    a["reviews"] = storage.count(review.Review)
+    a["states"] = storage.count(state.State)
+    a["users"] = storage.count(user.User)
     return jsonify(a)
