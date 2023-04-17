@@ -26,8 +26,9 @@ create a handler for 404 errors that
 returns a JSON-formatted 404 status code
 response
 """
-@app.error_processor
-def my_error_processor(error):
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
     return jsonify({"error": "Not found"})
 
 
