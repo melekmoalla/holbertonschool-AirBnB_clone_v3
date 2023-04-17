@@ -15,7 +15,7 @@ def api_status():
     return jsonify({"status": "OK"})
 
 
-@app_views.route('/api/v1/stats', methods=['GET'], strict_slashes=False)
+@app_views.route('/stats', strict_slashes=False)
 def count():
     a = {}
     a["amenities"] = storage.count(amenity.Amenity)
@@ -24,4 +24,4 @@ def count():
     a["reviews"] = storage.count(review.Review)
     a["states"] = storage.count(state.State)
     a["users"] = storage.count(user.User)
-    return jsonify(a)
+    return a
