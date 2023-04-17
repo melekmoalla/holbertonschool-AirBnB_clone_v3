@@ -21,7 +21,11 @@ def hello():
 def teardown_db(exception):
     storage.close()
 
-
+"""
+create a handler for 404 errors that
+returns a JSON-formatted 404 status code
+response
+"""
 @app.error_processor
 def my_error_processor(error):
     return jsonify({"error": "Not found"})
