@@ -85,3 +85,8 @@ class DBStorage:
                     new_dict[key] = obj
         return len(new_dict)
 
+    def get(self, cls, id):
+        objs = self.__session.query(cls).all()
+        for obj in objs:
+            if id == obj.id:
+                return obj

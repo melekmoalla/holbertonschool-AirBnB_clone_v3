@@ -78,3 +78,8 @@ class FileStorage:
             return len(new_dict)
         else:
             return len(self.__objects)
+
+    def get(self, cls, id):
+        key = "{}.{}".format(cls.__name__, id)
+        return self.__objects[key]
+    
