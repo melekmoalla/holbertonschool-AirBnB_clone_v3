@@ -2,7 +2,7 @@
 """
 Create a folder views inside v1
 """
-from api.v1.views.index import *
+import api.v1.views.index 
 from flask import Blueprint
 
 """
