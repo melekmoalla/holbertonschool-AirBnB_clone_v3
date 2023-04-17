@@ -17,11 +17,4 @@ def api_status():
 
 @app_views.route('/stats', strict_slashes=False)
 def count():
-    a = {}
-    a["amenities"] = storage.count(amenity.Amenity)
-    a["cities"] = storage.count(city.City)
-    a["places"] = storage.count(place.Place)
-    a["reviews"] = storage.count(review.Review)
-    a["states"] = storage.count(state.State)
-    a["users"] = storage.count(user.User)
-    return jsonify(a)
+    return jsonify(amenities=storage.count(amenity.Amenity), cities=storage.count(city.City), places=storage.count(place.Place), reviews=storage.count(review.Review), states=storage.count(state.State), users=storage.count(user.User))
