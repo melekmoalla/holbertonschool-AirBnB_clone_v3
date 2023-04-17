@@ -80,8 +80,9 @@ class FileStorage:
             return len(self.__objects)
 
     def get(self, cls, id):
-        if id is not None:
+        if id is not None or cls is not None:
             key = "{}.{}".format(cls.__name__, id)
-            return self.__objects[key]
+            if key in self.__objects:
+                return self.__objects[key]
         return None
     
