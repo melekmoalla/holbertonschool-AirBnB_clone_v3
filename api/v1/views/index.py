@@ -24,4 +24,4 @@ def count():
     a["reviews"] = count(review.Review)
     a["states"] = count(state.State)
     a["users"] = count(user.User)
-    return a
+    return jsonify(a)
