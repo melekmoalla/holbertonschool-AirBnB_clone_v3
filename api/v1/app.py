@@ -3,7 +3,7 @@
 create a variable app, instance of Flask
 """
 
-from flask import Flask
+from flask import Flask, jsonify
 from models import storage
 from api.v1.views import app_views
 import os
@@ -11,13 +11,21 @@ import os
 app = Flask(__name__)
 app.register_blueprint(app_views)
 
+
 @app.route("/")
 def hello():
-    return("mayouka")
+    return ("mayouka")
+
 
 @app.teardown_appcontext
 def teardown_db(exception):
     storage.close()
+
+
+@app.error_processor
+def my_error_processor(error):
+    return jsonify({"error": "Not found"})
+
 
 if __name__ == "__main__":
     host = os.getenv("HBNB_API_HOST", "0.0.0.0")
