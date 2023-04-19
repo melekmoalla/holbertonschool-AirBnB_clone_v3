@@ -1,17 +1,16 @@
 #!/usr/bin/python3
 """
-Create a new view for State objects that handles
-all default RESTFul API actions:
+Create a new view for Amenity objects that
+handles all default RESTFul API actions:
 """
 from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
 from models import storage
 from models.amenity import Amenity
-import models
 
 
 @app_views.route('/amenities', methods=['GET'], strict_slashes=False)
-def status():
+def Amenity1():
     slist = []
     states = storage.all(Amenity).values()
     for state in states:
@@ -20,7 +19,7 @@ def status():
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['GET'], strict_slashes=False)
-def get_state(amenity_id):
+def Amenity2(amenity_id):
     """Retrieves a State object"""
     states = storage.all(Amenity)
     key = "Amenity."+amenity_id
@@ -32,7 +31,7 @@ def get_state(amenity_id):
 
 @app_views.route('/amenities/<amenity_id>', methods=['DELETE'],
                  strict_slashes=False)
-def delete_state(amenity_id):
+def Amenity3(amenity_id):
     states = storage.all(Amenity)
     key = "Amenity."+amenity_id
     if key not in states:
@@ -44,7 +43,7 @@ def delete_state(amenity_id):
 
 
 @app_views.route('/amenities', methods=['POST'], strict_slashes=False)
-def post():
+def pAmenity4():
     js = request.get_json()
     if not js:
         abort(400, 'Not a JSON')
@@ -57,7 +56,7 @@ def post():
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['PUT'], strict_slashes=False)
-def put(amenity_id):
+def Amenity5(amenity_id):
     states = storage.all(Amenity)
     key = "Amenity."+amenity_id
     if key not in states:
