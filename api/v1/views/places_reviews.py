@@ -29,10 +29,10 @@ def review1(place_id):
 
 
 @app_views.route('/reviews/<review_id>', methods=['GET'], strict_slashes=False)
-def review2(city_id):
+def review2(review_id):
     """Retrieves a city object"""
     city = storage.all(Review)
-    key = "Review."+city_id
+    key = "Review."+review_id
     if key not in city:
         abort(404)
     a = city[key]
@@ -41,9 +41,9 @@ def review2(city_id):
 
 @app_views.route("/reviews/<review_id>",
                  methods=['DELETE'], strict_slashes=False)
-def review3(city_id):
+def review3(review_id):
     city = storage.all(Review)
-    key = "Review."+city_id
+    key = "Review."+review_id
     if key not in city:
         abort(404)
     a = city[key]
@@ -54,9 +54,9 @@ def review3(city_id):
 
 @app_views.route('/places/<place_id>/reviews',
                  methods=['POST'], strict_slashes=False)
-def review4(place_id):
+def review4(review_id):
     states = storage.all(Place)
-    key = "Place."+place_id
+    key = "Place."+review_id
     if key not in states:
         abort(404)
     js = request.get_json()
@@ -71,9 +71,9 @@ def review4(place_id):
 
 
 @app_views.route('/reviews/<review_id>', methods=['PUT'], strict_slashes=False)
-def review5(city_id):
+def review5(review_id):
     city = storage.all(Review)
-    key = "Review."+city_id
+    key = "Review."+review_id
     if key not in city:
         abort(404)
     js = request.get_json()
