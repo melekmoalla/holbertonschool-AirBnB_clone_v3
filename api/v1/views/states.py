@@ -69,4 +69,4 @@ def put(state_id):
         if i not in ["id", "created_at", "updated_at"]:
             a[i] = js[i]
     storage.save()
-    return jsonify(a.to_dict()), 200
+    return jsonify(a.__dict__), 200
