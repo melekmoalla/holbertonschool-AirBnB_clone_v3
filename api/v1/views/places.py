@@ -8,6 +8,7 @@ from flask import Flask, jsonify, abort, request
 from models import storage
 from models.city import City
 from models.place import Place
+from models.user import User
 
 
 @app_views.route('/cities/<city_id>/places',
@@ -58,9 +59,15 @@ def place4(city_id):
     key = "City."+city_id
     if key not in states:
         abort(404)
+    user = storage.all(User)
+    key = "User."+city_id
+    if key not in user:
+        abort(404)
     js = request.get_json()
     if not js:
         abort(400, 'Not a JSON')
+    if 'user_id' not in js:
+        abort(400, 'Missing user_id')
     if 'name' not in js:
         abort(400, 'Missing name')
     city = Place(**js)
