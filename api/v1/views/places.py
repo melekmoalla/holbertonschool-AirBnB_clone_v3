@@ -64,10 +64,6 @@ def place4(city_id):
         abort(400, 'Not a JSON')
     if 'user_id' not in js:
         abort(400, 'Missing user_id')
-    user = storage.all(User)
-    key1 = "User."+city_id
-    if key1 not in user:
-        abort(404)
     if 'name' not in js:
         abort(400, 'Missing name')
     city = Place(**js)
