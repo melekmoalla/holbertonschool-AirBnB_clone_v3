@@ -24,9 +24,9 @@ def get_state(state_id):
     """Retrieves a State object"""
     states = storage.all(State)
     key = "State."+state_id
-    a = states[key]
-    if a is None:
+    if key not in states:
         abort(404)
+    a = states[key]
     return jsonify(a.to_dict())
 
 
