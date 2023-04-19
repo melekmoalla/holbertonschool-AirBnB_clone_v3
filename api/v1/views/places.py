@@ -55,7 +55,7 @@ def place3(place_id):
                  methods=['POST'], strict_slashes=False)
 def place4(city_id):
     states = storage.all(City)
-    key = "State."+city_id
+    key = "City."+city_id
     if key not in states:
         abort(404)
     js = request.get_json()
