@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-Create a new view for State objects that handles
-all default RESTFul API actions:
+Create a new view for User object that
+handles all default RESTFul API actions:
 """
 from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
@@ -71,7 +71,7 @@ def users5(user_id):
     m = a.__dict__
     for i in js:
         if i not in ["id", "created_at",
-                     "updated_at"]:
+                     "updated_at", "email"]:
             m[i] = js[i]
     storage.save()
     return jsonify(m.to_dict()), 200
