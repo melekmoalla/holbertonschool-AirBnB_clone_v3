@@ -21,7 +21,7 @@ def place1(city_id):
     city = storage.all(Place).values()
     for stat in city:
         pp = stat.to_dict()
-        if "state_id" in pp:
+        if "city_id" in pp:
             if pp["city_id"] == city_id:
                 slist.append(stat.to_dict())
     return jsonify(slist)
