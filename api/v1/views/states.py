@@ -30,7 +30,8 @@ def get_state(state_id):
     return jsonify(a.to_dict())
 
 
-@app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/states/<state_id>', methods=['DELETE'],
+                 strict_slashes=False)
 def delete_state(state_id):
     states = storage.all(State)
     key = "State."+state_id
@@ -67,7 +68,8 @@ def put(state_id):
     a = states[key]
     m = a.__dict__
     for i in js:
-        if i not in ["id", "created_at", "updated_at"]:
+        if i not in ["id", "created_at",
+                     "updated_at"]:
             m[i] = js[i]
     storage.save()
     return jsonify(m.to_dict()), 200
