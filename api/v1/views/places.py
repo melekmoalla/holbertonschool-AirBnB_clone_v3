@@ -66,6 +66,10 @@ def place4(city_id):
         abort(400, 'Missing user_id')
     if 'name' not in js:
         abort(400, 'Missing name')
+    city = storage.all(User)
+    key = "User."+city_id
+    if key not in city:
+        abort(404)
     city = Place(**js)
     storage.new(city)
     storage.save()
