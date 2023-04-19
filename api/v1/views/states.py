@@ -42,7 +42,7 @@ def delete_state(state_id):
     return jsonify({}), 200
 
 
-@app_views.route('/states/<state_id>', methods=['POST'], strict_slashes=False)
+@app_views.route('/states', methods=['POST'], strict_slashes=False)
 def post(state_id):
     js = request.get_json()
     if not js:
