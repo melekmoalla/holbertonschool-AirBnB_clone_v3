@@ -38,7 +38,8 @@ def place2(place_id):
     return jsonify(a.to_dict())
 
 
-@app_views.route('/places/<place_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/places/<place_id>',
+                 methods=['DELETE'], strict_slashes=False)
 def place3(place_id):
     city = storage.all(Place)
     key = "Place."+place_id
