@@ -62,8 +62,6 @@ def put(state_id):
     if key not in states:
         abort(404)
     js = request.get_json()
-    if not js:
-        abort(400, 'Not a JSON')
     a = states[key]
     for i in js:
         if i not in ["id", "created_at", "updated_at"]:
