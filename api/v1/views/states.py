@@ -56,7 +56,7 @@ def post():
     return jsonify(state.to_dict()), 201
 
 
-@app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route("/states/<state_id>", methods=["PUT"], strict_slashes=False)
 def put(state_id):
     js = request.get_json()
     states = storage.all(State)
@@ -65,8 +65,11 @@ def put(state_id):
         abort(404)
     if not js:
         abort(400, 'Not a JSON')
-    for key, value in js.items():
-        if key not in ["id", "created_at", "updated_at"]:
-            setattr(states[key], key, value)
+    a = states[key]
+    m = a.__dict__
+    for i in js:
+        if i not in ["id", "created_at",
+                     "updated_at"]:
+            m[i] = js[i]
     storage.save()
-    return jsonify(states.to_dict()), 200
+    return jsonify(a.to_dict()), 200
