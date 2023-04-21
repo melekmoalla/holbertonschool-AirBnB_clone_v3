@@ -61,10 +61,13 @@ def put(state_id):
     js = request.get_json()
     states = storage.all(State)
     key = "State."+state_id
-    if key not in states:
+    """Updates an object"""
+    state_data = request.get_json()
+    state = storage.get(State, state_id)
+    if not state:
         abort(404)
-    if not js:
-        abort(400, 'Not a JSON')
+    elif not state_data:
+        abort(400, "Not a JSON")
     a = states[key]
     m = a.__dict__
     for i in js:
