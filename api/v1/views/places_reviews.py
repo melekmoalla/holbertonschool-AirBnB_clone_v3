@@ -61,6 +61,8 @@ def review4(place_id):
     js = request.get_json()
     if not js:
         abort(400, 'Not a JSON')
+    if 'user_id' not in js:
+        abort(400, 'Missing user_id')
     if 'text' not in js:
         abort(400, 'Missing text')
     city = Review(**js)
