@@ -65,11 +65,8 @@ def put(state_id):
         abort(404)
     if not js:
         abort(400, 'Not a JSON')
-    a = states[key]
-    m = a.__dict__
-    for i in js:
-        if i not in ["id", "created_at",
-                     "updated_at"]:
-            m[i] = js[i]
+    for key, value in js.items():
+        if key not in ["id", "created_at", "updated_at"]:
+            setattr(states[key], key, value)
     storage.save()
-    return jsonify(a.to_dict()), 200
+    return jsonify(states.to_dict()), 200
