@@ -8,6 +8,7 @@ from flask import Flask, jsonify, abort, request
 from models import storage
 from models.review import Review
 from models.place import Place
+from models.user import User
 
 
 @app_views.route('/places/<place_id>/reviews',
@@ -55,8 +56,8 @@ def review3(review_id):
                  methods=['POST'], strict_slashes=False)
 def review4(place_id):
     states = storage.all(Place)
-    key = "Place."+place_id
-    if key not in states:
+    me = "Place."+place_id
+    if me not in states:
         abort(404)
     js = request.get_json()
     if not js:
@@ -65,6 +66,10 @@ def review4(place_id):
         abort(400, 'Missing user_id')
     if 'text' not in js:
         abort(400, 'Missing text')
+    user = storage.all(User)
+    key = "User."+js['user_id']
+    if key not in user:
+        abort(404)
     city = Review(**js)
     storage.new(city)
     storage.save()
