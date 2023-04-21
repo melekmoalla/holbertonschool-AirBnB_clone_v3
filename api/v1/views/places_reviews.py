@@ -6,12 +6,11 @@ objects that handles all default RESTFul API actions:
 from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
 from models import storage
-from models.city import City
 from models.review import Review
 from models.place import Place
 
 
-@app_views.route('/api/v1/places/<place_id>/reviews',
+@app_views.route('/places/<place_id>/reviews',
                  methods=['GET'], strict_slashes=False)
 def review1(place_id):
     slist = []
