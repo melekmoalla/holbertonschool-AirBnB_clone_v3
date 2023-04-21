@@ -53,9 +53,9 @@ def review3(review_id):
 
 @app_views.route('/places/<place_id>/reviews',
                  methods=['POST'], strict_slashes=False)
-def review4(review_id):
+def review4(place_id):
     states = storage.all(Place)
-    key = "Place."+review_id
+    key = "Place."+place_id
     if key not in states:
         abort(404)
     js = request.get_json()
